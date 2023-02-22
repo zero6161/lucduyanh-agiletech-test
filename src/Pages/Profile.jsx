@@ -65,7 +65,6 @@ const Profile = () => {
   const handlePageClick = (currentPage) => {
     setCurrentPage(currentPage);
   };
-  console.log(idLine);
   const TableCustom = styled(TableCell)({
     border: "1px solid black",
   });
