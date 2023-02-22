@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Header from "./Components/Header/Header";
+import HomePage from "./Pages/HomePage";
+import { createBrowserRouter } from "react-router-dom";
+import { RouterProvider } from "react-router";
+import LoginPage from "./Pages/LoginPage";
+import Profile from "./Pages/Profile";
+import Addnew from "./Components/Profile/Addnew";
+import Private from "./Components/Private/Private";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const routes = createBrowserRouter([
+    {
+      path: "/",
+      element: <HomePage />,
+    },
+    {
+      path: "/login",
+      element: <LoginPage />,
+    },
+    {
+      path: "/profile",
+      element: (
+        <Private>
+          <Profile />
+        </Private>
+      ),
+      children: [
+        {
+          path: "addnew",
+          element: <Addnew />,
+        },
+      ],
+    },
+  ]);
+  return <RouterProvider router={routes} />;
 }
 
 export default App;
